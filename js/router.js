@@ -27,8 +27,6 @@ export default class Router {
     const { pathname } = window.location;
 
     // Route: What it should look for based on the pathname
-    console.log(pathname);
-    console.log('routes', this.routes);
     const route = this.routes[pathname] || this.routes[404];
 
     fetch(route)
