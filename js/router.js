@@ -10,6 +10,8 @@ export default class Router {
   }
 
   route(event) {
+    console.log('routed');
+
     // if you don't find the event, select the window event
     event = event || window.event;
 
@@ -20,21 +22,19 @@ export default class Router {
     this.handle();
   }
 
-  handle = () => {
+  handle() {
     // Pathname: current address
     const { pathname } = window.location;
 
-    console.log('Pathname', pathname);
-
     // Route: What it should look for based on the pathname
-
+    console.log(pathname);
+    console.log('routes', this.routes);
     const route = this.routes[pathname] || this.routes[404];
-    console.log('Route', route);
 
     fetch(route)
       .then((data) => data.text())
       .then((html) => {
         document.querySelector('#app').innerHTML = html;
       });
-  };
+  }
 }
